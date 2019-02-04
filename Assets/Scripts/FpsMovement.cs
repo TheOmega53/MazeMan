@@ -37,11 +37,13 @@ public class FpsMovement : MonoBehaviour
     {
         Cursor.lockState = wantedMode;
         charController = GetComponent<CharacterController>();
+        Cursor.visible = (CursorLockMode.Locked != wantedMode);
     }
 
     void Update()
     {
-        Cursor.visible = (CursorLockMode.Locked != wantedMode);
+        if (EventSystem.current.IsPointerOverGameObject())
+            return;
         MoveCharacter();
         RotateCharacter();
         RotateCamera();
@@ -49,8 +51,7 @@ public class FpsMovement : MonoBehaviour
     }
     private void Interaction()
     {
-        if (EventSystem.current.IsPointerOverGameObject())
-            return;
+        
 
         if (Input.GetMouseButtonDown(0))
         {

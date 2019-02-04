@@ -8,10 +8,19 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/menu.unity
     guid: 13fbacfa46945d74abeec5cabd96d888
   - enabled: 1
     path: Assets/Scenes/Catlike Maze.unity
     guid: b72266cfabfa53a41bf28d3f29f6840c
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: c68829e5edcc24e48983b6ef64d69ea7
+  - enabled: 1
+    path: Assets/Scenes/KeyMap.unity
+    guid: f59fd5be5927a7941b7bb79ddfc6b943
+  - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: c51c6c169c33e5743934337caa0639c3
   m_configObjects: {}

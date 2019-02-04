@@ -19,6 +19,8 @@ public class InventoryUI : MonoBehaviour {
 		// Populate our slots array
 		slots = itemsParent.GetComponentsInChildren<InventorySlot>();
 	}
+	
+	
 
 	void Update () {
 		// Check to see if we should open/close the inventory
@@ -28,13 +30,13 @@ public class InventoryUI : MonoBehaviour {
             if(Cursor.lockState == CursorLockMode.None)
             {
                 Cursor.lockState = CursorLockMode.Locked;
-            }
+				Cursor.visible = false;
 
-            if (Cursor.lockState == (CursorLockMode.Locked))
+            } else if (Cursor.lockState == CursorLockMode.Locked)
             {
                 Cursor.lockState = CursorLockMode.None;
+				Cursor.visible = true;
             }
-            Cursor.lockState = CursorLockMode.None;
 
             // Check to see if we should open/close the inventory
 
