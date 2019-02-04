@@ -7,6 +7,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(CharacterController))]
 
@@ -28,17 +29,89 @@ public class FpsMovement : MonoBehaviour
 
     private CharacterController charController;
 
+    public Interactable focus;
+
+    public CursorLockMode wantedMode;
+
     void Start()
     {
+        Cursor.lockState = wantedMode;
         charController = GetComponent<CharacterController>();
     }
 
     void Update()
     {
+        Cursor.visible = (CursorLockMode.Locked != wantedMode);
         MoveCharacter();
         RotateCharacter();
         RotateCamera();
+        Interaction();
     }
+    private void Interaction()
+    {
+        if (EventSystem.current.IsPointerOverGameObject())
+            return;
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            //RaycastHit hit;
+
+            RaycastHit hit;
+            Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+
+            if (Physics.Raycast(ray, out hit, 1000))
+            {
+                /*if(hit.collider.tag!="Player"&&hit.collider.tag!="Enemy")
+            {
+                position = hit.point;
+            }*/
+
+                Interactable interactable = hit.collider.GetComponent<Interactable>();
+            
+                if (interactable != null)
+                {
+                    SetFocus(interactable);
+                }
+                else
+                {
+                    Inventory.instance.usingItem = false; //If we didn't hit an item, turn off the using item display
+                    //TODO: This should be decided.
+                }
+
+
+            }
+        }
+    }
+
+    void SetFocus(Interactable newFocus)
+    {
+        // If our focus has changed
+        if (newFocus != focus)
+        {
+            // Defocus the old one
+            if (focus != null)
+                focus.OnDefocused();
+
+            focus = newFocus;   // Set our new focus
+                                //motor.FollowTarget(newFocus);	// Follow the new focus
+        }
+
+        newFocus.OnFocused(transform);
+    }
+
+    // Remove our current focus
+    void RemoveFocus()
+    {
+        if (focus != null)
+            focus.OnDefocused();
+
+        focus = null;
+        //motor.StopFollowingTarget();
+    }
+
+
+    // Update is called once per frame
 
     private void MoveCharacter()
     {

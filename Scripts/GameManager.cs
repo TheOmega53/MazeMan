@@ -6,19 +6,22 @@ public class GameManager : MonoBehaviour
     public Maze mazePrefab;
 
     private Maze mazeInstance;
-    
+
+    public bool KeyActive;
+
 
     private void Start()
     {
         BeginGame();
+        KeyActive = false;
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            RestartGame();
-        }
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+            //RestartGame();
+        //}
 
         
     }

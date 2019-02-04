@@ -5,6 +5,10 @@ using UnityEngine;
 public class CostumMaze : MonoBehaviour
 {
     private bool[] walls = new bool[4];
+    //private int[] doorAttr = new int[3]; 
+    private List<IntVector2> EnemyCoordinates = new List<IntVector2>();
+    private List<IntVector2> KeyCoordinates = new List<IntVector2>();
+    private List<int[]> DoorCoordinates = new List<int[]>();
 
     public bool[] getCell(IntVector2 coordinates)
     {
@@ -1399,5 +1403,63 @@ public class CostumMaze : MonoBehaviour
 
         }
         return walls;
+    }
+
+    public List<IntVector2> getEnemyCoordinates()
+    {
+        EnemyCoordinates.Clear();
+        EnemyCoordinates.Add(new IntVector2(1, 1));
+        EnemyCoordinates.Add(new IntVector2(2, 3));
+        EnemyCoordinates.Add(new IntVector2(10, 2));
+        EnemyCoordinates.Add(new IntVector2(10, 4));
+        EnemyCoordinates.Add(new IntVector2(1, 7));
+        EnemyCoordinates.Add(new IntVector2(7, 10));
+        EnemyCoordinates.Add(new IntVector2(10, 12));
+        EnemyCoordinates.Add(new IntVector2(17, 12));
+        EnemyCoordinates.Add(new IntVector2(15, 13));
+        EnemyCoordinates.Add(new IntVector2(3, 14));
+        EnemyCoordinates.Add(new IntVector2(7, 14));
+        EnemyCoordinates.Add(new IntVector2(15, 15));
+        EnemyCoordinates.Add(new IntVector2(0, 16));
+        EnemyCoordinates.Add(new IntVector2(8, 19));
+        EnemyCoordinates.Add(new IntVector2(4, 21));
+        EnemyCoordinates.Add(new IntVector2(18, 21));
+        EnemyCoordinates.Add(new IntVector2(2, 25));
+        EnemyCoordinates.Add(new IntVector2(1, 26));
+        EnemyCoordinates.Add(new IntVector2(12, 29));
+        return EnemyCoordinates;
+    }
+
+    public List<IntVector2> getKeyCoordinates()
+    {
+        KeyCoordinates.Clear();
+        KeyCoordinates.Add(new IntVector2(3, 0));
+        KeyCoordinates.Add(new IntVector2(3, 6));
+        KeyCoordinates.Add(new IntVector2(15, 3));
+        KeyCoordinates.Add(new IntVector2(12, 11));
+        KeyCoordinates.Add(new IntVector2(2, 17));
+        KeyCoordinates.Add(new IntVector2(17, 18));
+        KeyCoordinates.Add(new IntVector2(10, 20));
+        KeyCoordinates.Add(new IntVector2(1, 22));
+        KeyCoordinates.Add(new IntVector2(13, 26));
+        return KeyCoordinates;
+    }
+
+    public List<int[]> getDoorCoordinates()
+    {
+        DoorCoordinates.Clear();
+        DoorCoordinates.Add(new int[] { 2, 6, 3 });
+        DoorCoordinates.Add(new int[] { 14, 2, 0 });
+        DoorCoordinates.Add(new int[] { 11, 8, 0 });
+        DoorCoordinates.Add(new int[] { 12, 13, 0 });
+        DoorCoordinates.Add(new int[] { 11, 16, 0 });
+        DoorCoordinates.Add(new int[] { 4, 17, 3 });
+        DoorCoordinates.Add(new int[] { 18, 20, 0 });
+        DoorCoordinates.Add(new int[] { 12, 21, 3 });
+        DoorCoordinates.Add(new int[] { 0, 24, 0 });
+        DoorCoordinates.Add(new int[] { 15, 26, 3 });
+        return DoorCoordinates;
+
+
     }
 }

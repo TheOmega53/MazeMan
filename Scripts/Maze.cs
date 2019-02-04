@@ -14,6 +14,9 @@ public class Maze : MonoBehaviour {
 
     public MazePassage passagePrefab;
     public MazeWall wallPrefab;
+    public DoorScript doorPrefab;
+    public Enemy enemyPrefab;
+    public ItemPickup KeyPrefab;
 
     public CostumMaze costumMaze;
 
@@ -47,43 +50,6 @@ public class Maze : MonoBehaviour {
         }
     }
 
-    private void DoFirstGenerationStep(List<MazeCell> activeCells)
-    {
-        activeCells.Add(CreateCell(RandomCoordinates));
-    }
-
-    private void DoNextGenerationStep(List<MazeCell> activeCells)
-    {
-        int currentIndex = activeCells.Count - 1;
-        //int currentIndex = Random.Range(0,activeCells.Count - 1);
-        MazeCell currentCell = activeCells[currentIndex];
-        if (currentCell.IsFullyInitialized)
-        {
-            activeCells.RemoveAt(currentIndex);
-            return;
-        }
-        MazeDirection direction = currentCell.RandomUninitializedDirection;
-        IntVector2 coordinates = currentCell.coordinates + direction.ToIntVector2();
-        if (ContainsCoordinates(coordinates))
-        {
-            MazeCell neighbor = GetCell(coordinates);
-            if (neighbor == null)
-            {
-                neighbor = CreateCell(coordinates);
-                CreatePassage(currentCell, neighbor, direction);
-                activeCells.Add(neighbor);
-            }
-            else
-            {
-                CreateWall(currentCell, neighbor, direction);
-            }
-        }
-        else
-        {
-            CreateWall(currentCell, null, direction);
-        }
-    }
-
     private void CreatePassage(MazeCell cell, MazeCell otherCell, MazeDirection direction)
     {
         MazePassage passage = Instantiate(passagePrefab) as MazePassage;
@@ -103,15 +69,21 @@ public class Maze : MonoBehaviour {
         }
     }
 
-
-
-    public IntVector2 RandomCoordinates
+    private void CreateDoor(MazeCell cell, MazeCell otherCell, MazeDirection direction)
     {
-        get
-        {
-            return new IntVector2(Random.Range(0, size.x), Random.Range(0, size.z));
-        }
+        DoorScript door = Instantiate(doorPrefab) as DoorScript;
+        door.Initialize(cell, otherCell, direction);
     }
+
+    /*
+        public IntVector2 RandomCoordinates
+        {
+            get
+            {
+                return new IntVector2(Random.Range(0, size.x), Random.Range(0, size.z));
+            }
+        }
+     */
 
     public bool ContainsCoordinates(IntVector2 coordinate)
     {
@@ -138,6 +110,21 @@ public class Maze : MonoBehaviour {
         return newCell;
     }
 
+
+    private void CreateEnemy(IntVector2 coordinates)
+    {
+        Enemy newEnemy = Instantiate(enemyPrefab) as Enemy;
+        newEnemy.transform.position = cells[coordinates.x, coordinates.z].transform.position;
+
+    }
+
+    private void CreateKey(IntVector2 coordinates)
+    {
+        ItemPickup newKey = Instantiate(KeyPrefab) as ItemPickup;
+        newKey.transform.position = cells[coordinates.x, coordinates.z].transform.position;
+    }
+
+
     public void CreateCostumMaze()
     {
         IntVector2 coordinates = new IntVector2(0, 0);
@@ -152,6 +139,26 @@ public class Maze : MonoBehaviour {
                 CreateCell(coordinates, walls[0], walls[1], walls[2], walls[3]);
             }
         }
+
+        List<IntVector2> EnemyCoordinates = costumMaze.getEnemyCoordinates();
+        foreach(IntVector2 coordinate in EnemyCoordinates)
+        {
+            CreateEnemy(coordinate);
+        }
+
+        List<IntVector2> KeyCoordinates = costumMaze.getKeyCoordinates();
+        foreach (IntVector2 coordinate in KeyCoordinates)
+        {
+            CreateKey(coordinate);
+        }
+
+        List<int[]> DoorCoordinates = costumMaze.getDoorCoordinates();
+        foreach(int[] coordinate in DoorCoordinates)
+        {
+            MazeCell cell = cells[coordinate[0], coordinate[1]];
+            CreateDoor(cell, null, (MazeDirection)coordinate[2]);
+        }
+
     }
 
 
