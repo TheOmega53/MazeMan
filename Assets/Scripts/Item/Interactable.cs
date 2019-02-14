@@ -17,7 +17,6 @@ public class Interactable : MonoBehaviour {
 	bool hasInteracted = false;	// Have we already interacted with the object?
 
     public GameObject KeyActive;
-    bool holdingKey = false;  //Are we holding a key?
 
 	public virtual void Interact ()
 	{

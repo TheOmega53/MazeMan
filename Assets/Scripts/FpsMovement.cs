@@ -35,9 +35,7 @@ public class FpsMovement : MonoBehaviour
 
     void Start()
     {
-        Cursor.lockState = wantedMode;
         charController = GetComponent<CharacterController>();
-        Cursor.visible = (CursorLockMode.Locked != wantedMode);
     }
 
     void Update()
@@ -95,7 +93,6 @@ public class FpsMovement : MonoBehaviour
                 focus.OnDefocused();
 
             focus = newFocus;   // Set our new focus
-                                //motor.FollowTarget(newFocus);	// Follow the new focus
         }
 
         newFocus.OnFocused(transform);
@@ -108,7 +105,6 @@ public class FpsMovement : MonoBehaviour
             focus.OnDefocused();
 
         focus = null;
-        //motor.StopFollowingTarget();
     }
 
 

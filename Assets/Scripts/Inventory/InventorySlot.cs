@@ -6,7 +6,9 @@ using UnityEngine.UI;
 public class InventorySlot : MonoBehaviour {
 
 	public Image icon;          // Reference to the Icon image
-    public GameObject inventoryUI;
+    public InventoryUI inventoryUI;
+    public Color selectedColor;
+    public Color unSelectedColor;
 
 
 
@@ -36,11 +38,21 @@ public class InventorySlot : MonoBehaviour {
 	// Called when the item is pressed
 	public void UseItem ()
 	{
+
 		if (item != null)
 		{
-			item.Use();
-            inventoryUI.SetActive(false);
-        }
+            item.Use();
+            //TODO: create USE button to do this.
+        }    
 	}
-
+    
+    public void Select()
+    {
+        inventoryUI.selectedSlot = this;
+        if (item != null)
+        {
+            this.GetComponentInChildren<Image>().color = selectedColor;
+        }
+            
+    }
 }

@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 /* This object updates the inventory UI. */
 
@@ -7,6 +9,8 @@ public class InventoryUI : MonoBehaviour {
 	public Transform itemsParent;	// The parent object of all the items
 	public GameObject inventoryUI;	// The entire UI
     public GameObject itemActivationUI;  //to show an item is being used
+    public GameObject lockedCursor;  //The in-game cursor
+    public InventorySlot selectedSlot;
 
 	Inventory inventory;	// Our current inventory
 
@@ -27,20 +31,14 @@ public class InventoryUI : MonoBehaviour {
 		if (Input.GetButtonDown("Cancel"))
 		{
             //Changing between the 2 different cursor lock states
-            if(Cursor.lockState == CursorLockMode.None)
-            {
-                Cursor.lockState = CursorLockMode.Locked;
-				Cursor.visible = false;
-
-            } else if (Cursor.lockState == CursorLockMode.Locked)
-            {
-                Cursor.lockState = CursorLockMode.None;
-				Cursor.visible = true;
-            }
+            CursorManager.instance.toggleCursorMode();
 
             // Check to see if we should open/close the inventory
-
             inventoryUI.SetActive(!inventoryUI.activeSelf);
+            lockedCursor.SetActive(!lockedCursor.activeSelf);
+
+            inventory.usingItem = false;
+            selectedSlot = null;
 		}
         if (!itemActivationUI.activeSelf)
         {
@@ -77,4 +75,45 @@ public class InventoryUI : MonoBehaviour {
 			}
 		}
 	}
+
+
+    public void Resume()
+    {
+        //lock cursor
+        CursorManager.instance.lockCursor();
+
+        //it has the same functionality as pressing "Inventory key input" (which is "i" or "b" keys in this case)
+        inventoryUI.SetActive(!inventoryUI.activeSelf);
+        lockedCursor.SetActive(!lockedCursor.activeSelf);
+
+        if(selectedSlot != null)
+        {
+            selectedSlot.GetComponentInChildren<Image>().color = selectedSlot.unSelectedColor;
+        }
+
+    }
+
+    public void Use()
+    {
+        //lock cursor
+        CursorManager.instance.lockCursor();
+
+        //it has the same functionality as pressing "Inventory key input" (which is "i" or "b" keys in this case)
+        inventoryUI.SetActive(!inventoryUI.activeSelf);
+        lockedCursor.SetActive(!lockedCursor.activeSelf);
+
+        if(selectedSlot != null)
+        {
+            selectedSlot.GetComponentInChildren<Image>().color = selectedSlot.unSelectedColor;
+            selectedSlot.UseItem();
+        }
+
+
+        //TODO: Implement using the active item
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
 }
