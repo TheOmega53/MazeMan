@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /* This object updates the inventory UI. */
 
@@ -11,6 +12,8 @@ public class InventoryUI : MonoBehaviour {
 	Inventory inventory;	// Our current inventory
 
 	InventorySlot[] slots;	// List of all the slots
+
+    private bool gameIsPaused;
 
 	void Start () {
 		inventory = Inventory.instance;
@@ -27,20 +30,21 @@ public class InventoryUI : MonoBehaviour {
 		if (Input.GetButtonDown("Cancel"))
 		{
             //Changing between the 2 different cursor lock states
-            if(Cursor.lockState == CursorLockMode.None)
-            {
-                Cursor.lockState = CursorLockMode.Locked;
-				Cursor.visible = false;
-
-            } else if (Cursor.lockState == CursorLockMode.Locked)
-            {
-                Cursor.lockState = CursorLockMode.None;
-				Cursor.visible = true;
-            }
+            CursorManager.instance.Toggle();
 
             // Check to see if we should open/close the inventory
-
             inventoryUI.SetActive(!inventoryUI.activeSelf);
+
+            //Check to see if game is paused
+            if (!gameIsPaused)
+            {
+                Time.timeScale = 0f;
+                gameIsPaused = true;
+            } else
+            {
+                Time.timeScale = 1f;
+                gameIsPaused = false;
+            }
 		}
         if (!itemActivationUI.activeSelf)
         {
@@ -53,8 +57,6 @@ public class InventoryUI : MonoBehaviour {
         {
             itemActivationUI.SetActive(false);
         }
-        
-
     }
 
 	// Update the inventory UI by:
@@ -77,4 +79,25 @@ public class InventoryUI : MonoBehaviour {
 			}
 		}
 	}
+
+    public void Resume()
+    {
+        CursorManager.instance.Lock();
+        if (gameIsPaused)
+        {
+            Time.timeScale = 1f;
+            gameIsPaused = false;
+        }
+        inventoryUI.SetActive(!inventoryUI.activeSelf); //it has the same functionality as pressing "Inventory key input" (which is "i" or "b" keys in this case)
+    }
+
+    public void MainMenu()
+    {
+        if (gameIsPaused)
+        {
+            Time.timeScale = 1f;
+            gameIsPaused = false;
+        }
+        SceneManager.LoadScene("MainMenu");
+    }
 }

@@ -8,8 +8,7 @@ public class PauseMenu : MonoBehaviour {
 	public GameObject inventoryUI;
 
 	public void Resume(){
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        CursorManager.instance.Lock();
 		inventoryUI.SetActive(!inventoryUI.activeSelf); //it has the same functionality as pressing "Inventory key input" (which is "i" or "b" keys in this case)
 	}
 

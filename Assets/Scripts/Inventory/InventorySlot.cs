@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class InventorySlot : MonoBehaviour {
 
 	public Image icon;          // Reference to the Icon image
-    public GameObject inventoryUI;
+    public InventoryUI inventoryUI;
 
 
 
@@ -39,7 +39,7 @@ public class InventorySlot : MonoBehaviour {
 		if (item != null)
 		{
 			item.Use();
-            inventoryUI.SetActive(false);
+            inventoryUI.Resume();
         }
 	}
 

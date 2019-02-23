@@ -64,8 +64,8 @@ public class Enemy : MonoBehaviour
         if (exampleCol.collider.tag == "Player")
         {
             //Replace 'Game Over' with your game over scene's name.
-            Cursor.lockState = CursorLockMode.Confined;
-            Cursor.visible = true;
+            CursorManager.instance.Unlock();
+            Debug.Log("Cursor unlocked");
             SceneManager.LoadScene("GameOver");
         }
     }
