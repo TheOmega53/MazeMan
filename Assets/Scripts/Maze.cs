@@ -14,7 +14,7 @@ public class Maze : MonoBehaviour {
 
     public MazePassage passagePrefab;
     public MazeWall wallPrefab;
-    public DoorScript doorPrefab;
+    public MazeDoor doorPrefab;
     public Enemy enemyPrefab;
     public ItemPickup KeyPrefab;
 
@@ -71,7 +71,7 @@ public class Maze : MonoBehaviour {
 
     private void CreateDoor(MazeCell cell, MazeCell otherCell, MazeDirection direction)
     {
-        DoorScript door = Instantiate(doorPrefab) as DoorScript;
+        MazeDoor door = Instantiate(doorPrefab) as MazeDoor;
         door.Initialize(cell, otherCell, direction);
     }
 

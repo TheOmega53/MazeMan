@@ -51,7 +51,6 @@ public class CostumMaze : MonoBehaviour
 
                     case 4:
                     case 12:
-                    case 18:
                         walls[0] = true;
                         walls[1] = true;
                         walls[2] = true;
@@ -60,6 +59,7 @@ public class CostumMaze : MonoBehaviour
 
                     case 8:
                     case 13:
+                    case 18:
                         walls[0] = true;
                         walls[1] = true;
                         walls[2] = false;
@@ -177,9 +177,6 @@ public class CostumMaze : MonoBehaviour
                     case 4:
                     case 7:
                     case 10:
-                    case 14:
-                    case 15:
-                    case 16:
                         walls[1] = false;
                         walls[2] = true;
                         break;
@@ -190,6 +187,10 @@ public class CostumMaze : MonoBehaviour
                     case 8:
                     case 9:
                     case 11:
+                    case 14:
+                    case 15:
+                    case 16:
+                    case 18:
                         walls[1] = true;
                         walls[2] = false;
                         break;
@@ -790,6 +791,7 @@ public class CostumMaze : MonoBehaviour
                     case 3:
                     case 10:
                     case 11:
+                    case 13:
                         walls[1] = false;
                         walls[2] = true;
                         break;
@@ -815,7 +817,6 @@ public class CostumMaze : MonoBehaviour
                     case 6:
                     case 7:
                     case 9:
-                    case 13:
                     case 16:
                         walls[1] = false;
                         walls[2] = false;
@@ -1449,15 +1450,15 @@ public class CostumMaze : MonoBehaviour
     {
         DoorCoordinates.Clear();
         DoorCoordinates.Add(new int[] { 2, 6, 3 });
-        DoorCoordinates.Add(new int[] { 14, 2, 0 });
-        DoorCoordinates.Add(new int[] { 11, 8, 0 });
-        DoorCoordinates.Add(new int[] { 12, 13, 0 });
+        DoorCoordinates.Add(new int[] { 14, 2, 2 });
+        DoorCoordinates.Add(new int[] { 11, 8, 2 });
+        DoorCoordinates.Add(new int[] { 12, 12, 0 });
         DoorCoordinates.Add(new int[] { 11, 16, 0 });
-        DoorCoordinates.Add(new int[] { 4, 17, 3 });
-        DoorCoordinates.Add(new int[] { 18, 20, 0 });
-        DoorCoordinates.Add(new int[] { 12, 21, 3 });
-        DoorCoordinates.Add(new int[] { 0, 24, 0 });
-        DoorCoordinates.Add(new int[] { 15, 26, 3 });
+        DoorCoordinates.Add(new int[] { 3, 17, 1 });
+        DoorCoordinates.Add(new int[] { 18, 19, 0 });
+        DoorCoordinates.Add(new int[] { 11, 21, 1 });
+        DoorCoordinates.Add(new int[] { 0, 23, 0 });
+        DoorCoordinates.Add(new int[] { 14, 25, 1 });
         return DoorCoordinates;
 
 

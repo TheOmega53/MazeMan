@@ -30,7 +30,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: doorPrefab
       value: 
-      objectReference: {fileID: 114054764355333946, guid: deea0f6b6588d9e4193fee6ed6636bab,
+      objectReference: {fileID: 114678892397443022, guid: deea0f6b6588d9e4193fee6ed6636bab,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
@@ -86,7 +86,7 @@ MonoBehaviour:
     type: 2}
   wallPrefab: {fileID: 114671673234363418, guid: 0a5b1fd333fb65e49a9c9c3790b7bbd1,
     type: 2}
-  doorPrefab: {fileID: 114054764355333946, guid: deea0f6b6588d9e4193fee6ed6636bab,
+  doorPrefab: {fileID: 114678892397443022, guid: deea0f6b6588d9e4193fee6ed6636bab,
     type: 2}
   enemyPrefab: {fileID: 114939229255840800, guid: 54657b8856b0ec3429e1c4a4728dd87a,
     type: 2}
