@@ -20,7 +20,7 @@ public class Item : ScriptableObject {
         // Something might happen
 
         Debug.Log("Using " + name);
-
+        Inventory.instance.activeItem = this;
 
 
     }
@@ -29,6 +29,4 @@ public class Item : ScriptableObject {
 	{
 		Inventory.instance.Remove(this);
 	}
-
-
 }

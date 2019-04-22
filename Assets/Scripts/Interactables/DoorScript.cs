@@ -14,18 +14,21 @@ public class DoorScript : Interactable {
     {
         base.Interact();
 
-        toggleDoor();
+        ToggleDoor();
 
     }
 
-    void toggleDoor()
+    void ToggleDoor()
     {
         if (!isOpen)
         {
-            if (Inventory.instance.usingItem)
+            if(Inventory.instance.activeItem != null)
             {
-                transform.rotation *= Quaternion.Euler(0, 80f * rotationSpeed, 0);
-                isOpen = true;
+                if (Inventory.instance.activeItem.name == "Golden Key")
+                {
+                    transform.rotation *= Quaternion.Euler(0, 80f * rotationSpeed, 0);
+                    isOpen = true;
+                }
             }
         }
         else

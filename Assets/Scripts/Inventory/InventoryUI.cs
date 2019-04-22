@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 /* This object updates the inventory UI. */
 
@@ -48,12 +49,13 @@ public class InventoryUI : MonoBehaviour {
 		}
         if (!itemActivationUI.activeSelf)
         {
-            if (inventory.usingItem)
+            if (inventory.activeItem != null)
             {
                 itemActivationUI.SetActive(true);
+                itemActivationUI.GetComponentInChildren<Text>().text = ("Using " + inventory.activeItem.name);
             }
         }
-        else if (!inventory.usingItem)
+        else if (inventory.activeItem == null)
         {
             itemActivationUI.SetActive(false);
         }

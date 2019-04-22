@@ -30,7 +30,7 @@ public class Inventory : MonoBehaviour {
 	// Current list of items in inventory
 	public List<Item> items = new List<Item>();
 
-    public bool usingItem;  //Are we using an item right now ?
+    public Item activeItem;  //Are we using an item right now ?
 
 	// Add a new item. If there is enough room we
 	// return true. Else we return false.

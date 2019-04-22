@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.AI;
 
 public class GameManager : MonoBehaviour
 {
@@ -7,21 +8,20 @@ public class GameManager : MonoBehaviour
 
     private Maze mazeInstance;
 
-    public bool KeyActive;
-
-
+    public NavMeshSurface surface;
     private void Start()
     {
         BeginGame();
-        KeyActive = false;
+
+        //surface.BuildNavMesh();
     }
 
     private void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-            //RestartGame();
-        //}
+        if (Input.GetKeyDown(KeyCode.F5))
+        {
+            RestartGame();
+        }
 
         
     }
@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     private void BeginGame() {
         mazeInstance = Instantiate(mazePrefab) as Maze;
         StartCoroutine(mazeInstance.Generate());
+        
     }
 
     private void RestartGame() {

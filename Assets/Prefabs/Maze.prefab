@@ -32,6 +32,16 @@ Prefab:
       value: 
       objectReference: {fileID: 114678892397443022, guid: deea0f6b6588d9e4193fee6ed6636bab,
         type: 2}
+    - target: {fileID: 0}
+      propertyPath: stoneWallPrefab
+      value: 
+      objectReference: {fileID: 114522482231869532, guid: ad2b1d3c72f964a49ab5e7458cdeb5f3,
+        type: 2}
+    - target: {fileID: 0}
+      propertyPath: woodenWallPrefab
+      value: 
+      objectReference: {fileID: 114477424239167028, guid: 5277269c6eab9e246a3fdb4f708cb04a,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1758036453276096}
@@ -86,6 +96,10 @@ MonoBehaviour:
     type: 2}
   wallPrefab: {fileID: 114671673234363418, guid: 0a5b1fd333fb65e49a9c9c3790b7bbd1,
     type: 2}
+  stoneWallPrefab: {fileID: 114522482231869532, guid: ad2b1d3c72f964a49ab5e7458cdeb5f3,
+    type: 2}
+  woodenWallPrefab: {fileID: 114477424239167028, guid: 5277269c6eab9e246a3fdb4f708cb04a,
+    type: 2}
   doorPrefab: {fileID: 114678892397443022, guid: deea0f6b6588d9e4193fee6ed6636bab,
     type: 2}
   enemyPrefab: {fileID: 114939229255840800, guid: 54657b8856b0ec3429e1c4a4728dd87a,
@@ -94,3 +108,4 @@ MonoBehaviour:
     type: 2}
   costumMaze: {fileID: 114223335220822702, guid: 98045d81489a3cc43b3efa3f546c466f,
     type: 2}
+  surface: {fileID: 0}

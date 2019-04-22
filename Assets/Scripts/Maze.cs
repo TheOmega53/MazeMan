@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Maze : MonoBehaviour {
 
@@ -13,17 +14,26 @@ public class Maze : MonoBehaviour {
     public IntVector2 size;
 
     public MazePassage passagePrefab;
+
     public MazeWall wallPrefab;
+    public MazeWall stoneWallPrefab;
+    public MazeWall woodenWallPrefab;
+
+
     public MazeDoor doorPrefab;
     public Enemy enemyPrefab;
     public ItemPickup KeyPrefab;
 
     public CostumMaze costumMaze;
 
+    public NavMeshSurface surface;
+
+
 
     // Use this for initialization
-    void Start() {
+    void Awake() {
 
+        surface = GameObject.FindObjectOfType<NavMeshSurface>();
     }
 
     // Update is called once per frame
@@ -42,11 +52,9 @@ public class Maze : MonoBehaviour {
         cells = new MazeCell[size.x, size.z];
         List<MazeCell> activeCells = new List<MazeCell>();
         CreateCostumMaze();
-        //DoFirstGenerationStep(activeCells);
         while (activeCells.Count > 0)
         {
             yield return delay;
-            //DoNextGenerationStep(activeCells);
         }
     }
 
@@ -58,9 +66,32 @@ public class Maze : MonoBehaviour {
         passage.Initialize(otherCell, cell, direction.GetOpposite());
     }
 
-    private void CreateWall(MazeCell cell, MazeCell otherCell, MazeDirection direction)
+
+    public enum WallType
     {
-        MazeWall wall = Instantiate(wallPrefab) as MazeWall;
+        Bramble,
+        Stone,
+        Wooden
+    }
+
+    private void CreateWall(MazeCell cell, MazeCell otherCell, MazeDirection direction, WallType type = WallType.Bramble) //TODO: Add walltype
+    {
+        MazeWall wall;
+        switch (type)
+        {
+            case WallType.Stone:
+                wall = Instantiate(stoneWallPrefab) as MazeWall;
+                break;
+
+            case WallType.Wooden:
+                wall = Instantiate(woodenWallPrefab) as MazeWall;
+                break;
+
+            default:
+                wall = Instantiate(wallPrefab) as MazeWall;
+                break;
+        }
+        //MazeWall wall = Instantiate(wallPrefab) as MazeWall;
         wall.Initialize(cell, otherCell, direction);
         if (otherCell != null)
         {
@@ -74,16 +105,6 @@ public class Maze : MonoBehaviour {
         MazeDoor door = Instantiate(doorPrefab) as MazeDoor;
         door.Initialize(cell, otherCell, direction);
     }
-
-    /*
-        public IntVector2 RandomCoordinates
-        {
-            get
-            {
-                return new IntVector2(Random.Range(0, size.x), Random.Range(0, size.z));
-            }
-        }
-     */
 
     public bool ContainsCoordinates(IntVector2 coordinate)
     {
@@ -100,10 +121,11 @@ public class Maze : MonoBehaviour {
         newCell.transform.parent = transform;
         newCell.transform.localPosition = new Vector3(coordinates.x - size.x * 0.5f + 0.5f, 0f, coordinates.z - size.z * 0.5f + 0.5f);
 
-        if (NorthWall == true) CreateWall(newCell, null, (MazeDirection)0);
-        if (EastWall == true) CreateWall(newCell, null, (MazeDirection)1);
-        if (SouthWall == true) CreateWall(newCell, null, (MazeDirection)2);
-        if (WestWall == true) CreateWall(newCell, null, (MazeDirection)3);
+        WallType wallType = costumMaze.GetWallType(coordinates);
+        if (NorthWall == true) CreateWall(newCell, null, (MazeDirection)0, wallType);
+        if (EastWall == true) CreateWall(newCell, null, (MazeDirection)1, wallType);
+        if (SouthWall == true) CreateWall(newCell, null, (MazeDirection)2, wallType);
+        if (WestWall == true) CreateWall(newCell, null, (MazeDirection)3, wallType);
 
 
 
@@ -115,6 +137,7 @@ public class Maze : MonoBehaviour {
     {
         Enemy newEnemy = Instantiate(enemyPrefab) as Enemy;
         newEnemy.transform.position = cells[coordinates.x, coordinates.z].transform.position;
+        newEnemy.GetComponent<NavMeshAgent>().enabled = true;
 
     }
 
@@ -135,24 +158,26 @@ public class Maze : MonoBehaviour {
             for (int x = 0; x < 19; x++)
             {
                 coordinates = new IntVector2(x, z);
-                walls = costumMaze.getCell(coordinates);
+                walls = costumMaze.GetCell(coordinates);
                 CreateCell(coordinates, walls[0], walls[1], walls[2], walls[3]);
             }
         }
 
-        List<IntVector2> EnemyCoordinates = costumMaze.getEnemyCoordinates();
+        surface.BuildNavMesh();
+
+        List<IntVector2> EnemyCoordinates = costumMaze.GetEnemyCoordinates();
         foreach(IntVector2 coordinate in EnemyCoordinates)
         {
             CreateEnemy(coordinate);
         }
 
-        List<IntVector2> KeyCoordinates = costumMaze.getKeyCoordinates();
+        List<IntVector2> KeyCoordinates = costumMaze.GetKeyCoordinates();
         foreach (IntVector2 coordinate in KeyCoordinates)
         {
             CreateKey(coordinate);
         }
 
-        List<int[]> DoorCoordinates = costumMaze.getDoorCoordinates();
+        List<int[]> DoorCoordinates = costumMaze.GetDoorCoordinates();
         foreach(int[] coordinate in DoorCoordinates)
         {
             MazeCell cell = cells[coordinate[0], coordinate[1]];

@@ -1,10 +1,4 @@
-﻿/*
- * written by Joseph Hocking 2017
- * released under MIT license
- * text of license https://opensource.org/licenses/MIT
- */
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -59,9 +53,10 @@ public class FpsMovement : MonoBehaviour
             //RaycastHit hit;
 
             RaycastHit hit;
+            Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward, color: Color.white, duration: 2f);
             Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
 
-            if (Physics.Raycast(ray, out hit, 1000))
+            if (Physics.Raycast(ray, out hit, 1000, 11))
             {
                 /*if(hit.collider.tag!="Player"&&hit.collider.tag!="Enemy")
             {
@@ -76,7 +71,7 @@ public class FpsMovement : MonoBehaviour
                 }
                 else
                 {
-                    Inventory.instance.usingItem = false; //If we didn't hit an item, turn off the using item display
+                    Inventory.instance.activeItem = null; //If we didn't hit an item, turn off the using item display
                     //TODO: This should be decided.
                 }
 

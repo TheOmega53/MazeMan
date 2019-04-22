@@ -10,6 +10,8 @@ public class MazeCell : MonoBehaviour {
 
     private int initializedEdgeCount;
 
+    private BoxCollider boxCollider;
+    private MinimapLayout[] layouts;
 
 
     public MazeCellEdge GetEdge(MazeDirection direction)
@@ -49,6 +51,25 @@ public class MazeCell : MonoBehaviour {
             }
             throw new System.InvalidOperationException("MazeCell has no uninitialized directions left.");
         }
+    }
+
+    private void Start()
+    {
+        layouts = this.GetComponentsInChildren<MinimapLayout>();
+
+        for (int i = 0; i < layouts.Length; i++)
+        {
+            layouts[i].Deactivate();
+        }
+
+    }
+
+    public void ActivateMinimap()
+    {
+            for (int i = 0; i < layouts.Length ; i++){
+                layouts[i].Activate();
+            }
+            //TODO: Triggers here
     }
 }
 

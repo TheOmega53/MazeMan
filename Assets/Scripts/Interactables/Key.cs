@@ -8,10 +8,11 @@ using UnityEngine;
 public class Key : Item {
     public override void Use()
     {
-       // GameManager.instance.KeyActive = true;
+        // GameManager.instance.KeyActive = true;
+
+        base.Use();
 
         Debug.Log(name + " used!");
-        Inventory.instance.usingItem = true;
         //RemoveFromInventory();
         //TODO: Code Actual Key behaviour
     }

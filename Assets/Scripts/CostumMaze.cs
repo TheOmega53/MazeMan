@@ -5,12 +5,13 @@ using UnityEngine;
 public class CostumMaze : MonoBehaviour
 {
     private bool[] walls = new bool[4];
+    private Maze.WallType type;
     //private int[] doorAttr = new int[3]; 
     private List<IntVector2> EnemyCoordinates = new List<IntVector2>();
     private List<IntVector2> KeyCoordinates = new List<IntVector2>();
     private List<int[]> DoorCoordinates = new List<int[]>();
 
-    public bool[] getCell(IntVector2 coordinates)
+    public bool[] GetCell(IntVector2 coordinates)
     {
 
         switch (coordinates.z)
@@ -1406,7 +1407,7 @@ public class CostumMaze : MonoBehaviour
         return walls;
     }
 
-    public List<IntVector2> getEnemyCoordinates()
+    public List<IntVector2> GetEnemyCoordinates()
     {
         EnemyCoordinates.Clear();
         EnemyCoordinates.Add(new IntVector2(1, 1));
@@ -1431,7 +1432,7 @@ public class CostumMaze : MonoBehaviour
         return EnemyCoordinates;
     }
 
-    public List<IntVector2> getKeyCoordinates()
+    public List<IntVector2> GetKeyCoordinates()
     {
         KeyCoordinates.Clear();
         KeyCoordinates.Add(new IntVector2(3, 0));
@@ -1446,7 +1447,7 @@ public class CostumMaze : MonoBehaviour
         return KeyCoordinates;
     }
 
-    public List<int[]> getDoorCoordinates()
+    public List<int[]> GetDoorCoordinates()
     {
         DoorCoordinates.Clear();
         DoorCoordinates.Add(new int[] { 2, 6, 3 });
@@ -1462,5 +1463,26 @@ public class CostumMaze : MonoBehaviour
         return DoorCoordinates;
 
 
+    }
+
+    public Maze.WallType GetWallType(IntVector2 coordinates)
+    {
+        type = Maze.WallType.Bramble;
+        if (coordinates.x > 0 && coordinates.x < 5)
+        {
+            if(coordinates.z > 4 && coordinates.z < 9)
+            {
+                type = Maze.WallType.Stone;
+            }
+        }
+
+        if (coordinates.x > 12 && coordinates.x < 17)
+        {
+            if (coordinates.z > 1 && coordinates.z < 6)
+            {
+                type = Maze.WallType.Wooden;
+            }
+        }
+        return type;
     }
 }
