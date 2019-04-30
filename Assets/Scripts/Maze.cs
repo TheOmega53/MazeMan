@@ -16,8 +16,6 @@ public class Maze : MonoBehaviour {
     public MazePassage passagePrefab;
 
     public MazeWall wallPrefab;
-    public MazeWall stoneWallPrefab;
-    public MazeWall woodenWallPrefab;
 
 
     public MazeDoor doorPrefab;
@@ -28,12 +26,19 @@ public class Maze : MonoBehaviour {
 
     public NavMeshSurface surface;
 
+    GameObject enemyParent;
+    GameObject keyParent;
+
+    public WallData defaultWalls;
 
 
     // Use this for initialization
     void Awake() {
 
         surface = GameObject.FindObjectOfType<NavMeshSurface>();
+
+        enemyParent = new GameObject("Enemies");
+        keyParent = new GameObject("Keys");
     }
 
     // Update is called once per frame
@@ -67,37 +72,15 @@ public class Maze : MonoBehaviour {
     }
 
 
-    public enum WallType
+    private void CreateWall(MazeCell cell, MazeCell otherCell, MazeDirection direction) //TODO: Add walltype
     {
-        Bramble,
-        Stone,
-        Wooden
-    }
-
-    private void CreateWall(MazeCell cell, MazeCell otherCell, MazeDirection direction, WallType type = WallType.Bramble) //TODO: Add walltype
-    {
-        MazeWall wall;
-        switch (type)
-        {
-            case WallType.Stone:
-                wall = Instantiate(stoneWallPrefab) as MazeWall;
-                break;
-
-            case WallType.Wooden:
-                wall = Instantiate(woodenWallPrefab) as MazeWall;
-                break;
-
-            default:
-                wall = Instantiate(wallPrefab) as MazeWall;
-                break;
-        }
-        //MazeWall wall = Instantiate(wallPrefab) as MazeWall;
+        MazeWall wall = GameObject.Instantiate(wallPrefab) as MazeWall;
         wall.Initialize(cell, otherCell, direction);
-        if (otherCell != null)
+        /*if (otherCell != null)
         {
             wall = Instantiate(wallPrefab) as MazeWall;
             wall.Initialize(otherCell, cell, direction.GetOpposite());
-        }
+        }*/
     }
 
     private void CreateDoor(MazeCell cell, MazeCell otherCell, MazeDirection direction)
@@ -121,11 +104,11 @@ public class Maze : MonoBehaviour {
         newCell.transform.parent = transform;
         newCell.transform.localPosition = new Vector3(coordinates.x - size.x * 0.5f + 0.5f, 0f, coordinates.z - size.z * 0.5f + 0.5f);
 
-        WallType wallType = costumMaze.GetWallType(coordinates);
-        if (NorthWall == true) CreateWall(newCell, null, (MazeDirection)0, wallType);
-        if (EastWall == true) CreateWall(newCell, null, (MazeDirection)1, wallType);
-        if (SouthWall == true) CreateWall(newCell, null, (MazeDirection)2, wallType);
-        if (WestWall == true) CreateWall(newCell, null, (MazeDirection)3, wallType);
+        //WallType wallType = costumMaze.GetWallType(coordinates);
+        if (NorthWall == true) CreateWall(newCell, null, (MazeDirection)0);
+        if (EastWall == true) CreateWall(newCell, null, (MazeDirection)1);
+        if (SouthWall == true) CreateWall(newCell, null, (MazeDirection)2);
+        if (WestWall == true) CreateWall(newCell, null, (MazeDirection)3);
 
 
 
@@ -138,6 +121,7 @@ public class Maze : MonoBehaviour {
         Enemy newEnemy = Instantiate(enemyPrefab) as Enemy;
         newEnemy.transform.position = cells[coordinates.x, coordinates.z].transform.position;
         newEnemy.GetComponent<NavMeshAgent>().enabled = true;
+        newEnemy.transform.parent = enemyParent.transform;
 
     }
 
@@ -145,6 +129,7 @@ public class Maze : MonoBehaviour {
     {
         ItemPickup newKey = Instantiate(KeyPrefab) as ItemPickup;
         newKey.transform.position = cells[coordinates.x, coordinates.z].transform.position;
+        newKey.transform.parent = keyParent.transform;
     }
 
 

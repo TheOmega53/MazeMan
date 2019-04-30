@@ -5,7 +5,6 @@ using UnityEngine;
 public class CostumMaze : MonoBehaviour
 {
     private bool[] walls = new bool[4];
-    private Maze.WallType type;
     //private int[] doorAttr = new int[3]; 
     private List<IntVector2> EnemyCoordinates = new List<IntVector2>();
     private List<IntVector2> KeyCoordinates = new List<IntVector2>();
@@ -1465,24 +1464,4 @@ public class CostumMaze : MonoBehaviour
 
     }
 
-    public Maze.WallType GetWallType(IntVector2 coordinates)
-    {
-        type = Maze.WallType.Bramble;
-        if (coordinates.x > 0 && coordinates.x < 5)
-        {
-            if(coordinates.z > 4 && coordinates.z < 9)
-            {
-                type = Maze.WallType.Stone;
-            }
-        }
-
-        if (coordinates.x > 12 && coordinates.x < 17)
-        {
-            if (coordinates.z > 1 && coordinates.z < 6)
-            {
-                type = Maze.WallType.Wooden;
-            }
-        }
-        return type;
-    }
 }

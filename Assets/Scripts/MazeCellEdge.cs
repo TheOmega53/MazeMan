@@ -2,10 +2,10 @@
 
 public abstract class  MazeCellEdge : MonoBehaviour
 {
+    
+    [SerializeField] private MazeCell cell, otherCell;
 
-    public MazeCell cell, otherCell;
-
-    public MazeDirection direction;
+    [SerializeField] private MazeDirection direction;
 
     public virtual void Initialize(MazeCell cell, MazeCell otherCell, MazeDirection direction)
     {

@@ -10,7 +10,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: wallPrefab
       value: 
-      objectReference: {fileID: 114671673234363418, guid: 0a5b1fd333fb65e49a9c9c3790b7bbd1,
+      objectReference: {fileID: 114307883059902922, guid: e98eb4d9093e0684faffb5a99fc9c6d1,
         type: 2}
     - target: {fileID: 0}
       propertyPath: cellPrefab
@@ -94,11 +94,7 @@ MonoBehaviour:
     z: 30
   passagePrefab: {fileID: 114167463056521490, guid: f11c28c14f23c9a419b673a1c77a8c61,
     type: 2}
-  wallPrefab: {fileID: 114671673234363418, guid: 0a5b1fd333fb65e49a9c9c3790b7bbd1,
-    type: 2}
-  stoneWallPrefab: {fileID: 114522482231869532, guid: ad2b1d3c72f964a49ab5e7458cdeb5f3,
-    type: 2}
-  woodenWallPrefab: {fileID: 114477424239167028, guid: 5277269c6eab9e246a3fdb4f708cb04a,
+  wallPrefab: {fileID: 114307883059902922, guid: e98eb4d9093e0684faffb5a99fc9c6d1,
     type: 2}
   doorPrefab: {fileID: 114678892397443022, guid: deea0f6b6588d9e4193fee6ed6636bab,
     type: 2}

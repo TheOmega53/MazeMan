@@ -11,9 +11,7 @@ public class GameManager : MonoBehaviour
     public NavMeshSurface surface;
     private void Start()
     {
-        BeginGame();
-
-        //surface.BuildNavMesh();
+        //BeginGame();
     }
 
     private void Update()

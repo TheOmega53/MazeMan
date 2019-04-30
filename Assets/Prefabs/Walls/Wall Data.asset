@@ -11,4 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29d7aa133bb946e418ceaeb8e97256ad, type: 3}
   m_Name: Wall Data
   m_EditorClassIdentifier: 
-  transform: {fileID: 0}
+  Scale: {x: 0, y: 0, z: 0}
+  Wallprefab: {fileID: 114297583689408794, guid: 269818dbf289b144dbaf1c9117dfcc8b,
+    type: 2}
