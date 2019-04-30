@@ -29,7 +29,7 @@ public class Maze : MonoBehaviour {
     GameObject enemyParent;
     GameObject keyParent;
 
-    public WallData defaultWalls;
+    public GameObject defaultWalls;
 
 
     // Use this for initialization

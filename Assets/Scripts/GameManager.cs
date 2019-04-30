@@ -4,9 +4,9 @@ using UnityEngine.AI;
 
 public class GameManager : MonoBehaviour
 {
-    public Maze mazePrefab;
+    //public Maze mazePrefab;
 
-    private Maze mazeInstance;
+    //private Maze mazeInstance;
 
     public NavMeshSurface surface;
     private void Start()
@@ -25,14 +25,14 @@ public class GameManager : MonoBehaviour
     }
 
     private void BeginGame() {
-        mazeInstance = Instantiate(mazePrefab) as Maze;
-        StartCoroutine(mazeInstance.Generate());
+        //mazeInstance = Instantiate(mazePrefab) as Maze;
+        //StartCoroutine(mazeInstance.Generate());
         
     }
 
     private void RestartGame() {
         StopAllCoroutines();
-        Destroy(mazeInstance.gameObject);
+        //Destroy(mazeInstance.gameObject);
         BeginGame();
     }
 }
