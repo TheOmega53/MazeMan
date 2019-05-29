@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4840794809424130}
   - component: {fileID: 205106298344667146}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Vined Wall Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 33568346066143536}
   - component: {fileID: 23267054752741612}
   - component: {fileID: 65527159981602106}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: stone_wall_sm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 4724369815428290}
   - component: {fileID: 33195390090738474}
   - component: {fileID: 23964949626367972}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: wall_cover_sm_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 4790515204769414}
   - component: {fileID: 33112049048553414}
   - component: {fileID: 23346047707787238}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: wall_cover_sm_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 33367501737872746}
   - component: {fileID: 23406545946160924}
   - component: {fileID: 65530757922615758}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: stone_wall_sm_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

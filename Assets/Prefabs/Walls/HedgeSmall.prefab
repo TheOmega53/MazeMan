@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33311112120841834}
   - component: {fileID: 23415133117186262}
   - component: {fileID: 65788344269912170}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: HedgeSmall
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -72,11 +72,10 @@
     <Compile Include="Assets\NavMeshComponents\Scripts\NavMeshModifier.cs" />
     <Compile Include="Assets\NavMeshComponents\Scripts\NavMeshModifierVolume.cs" />
     <Compile Include="Assets\NavMeshComponents\Scripts\NavMeshSurface.cs" />
-    <Compile Include="Assets\Scripts\CursorManager.cs" />
-    <Compile Include="Assets\Scripts\Enemy.cs" />
-    <Compile Include="Assets\Scripts\FirstPersonController.cs" />
-    <Compile Include="Assets\Scripts\FpsMovement.cs" />
-    <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Controllers\Enemy.cs" />
+    <Compile Include="Assets\Scripts\Controllers\EnemyController.cs" />
+    <Compile Include="Assets\Scripts\Controllers\FirstPersonController.cs" />
+    <Compile Include="Assets\Scripts\Controllers\FpsMovement.cs" />
     <Compile Include="Assets\Scripts\GameOver.cs" />
     <Compile Include="Assets\Scripts\Interactables\DoorScript.cs" />
     <Compile Include="Assets\Scripts\Interactables\Key.cs" />
@@ -89,6 +88,9 @@
     <Compile Include="Assets\Scripts\Item\ItemActivation.cs" />
     <Compile Include="Assets\Scripts\Item\ItemPickup.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />
+    <Compile Include="Assets\Scripts\Managers\CursorManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\PlayerManager.cs" />
     <Compile Include="Assets\Scripts\MinimapLayout.cs" />
     <Compile Include="Assets\Scripts\Old Maze Generation\CostumMaze.cs" />
     <Compile Include="Assets\Scripts\Old Maze Generation\Maze.cs" />
