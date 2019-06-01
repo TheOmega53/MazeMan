@@ -34,20 +34,12 @@ public class EnemyController : MonoBehaviour {
             RaycastHit hit;
             RaycastHit playerHit;
 
-            /*RaycastHit[] hits;
-            hits = Physics.RaycastAll(ray, 2f, 11, queryTriggerInteraction: QueryTriggerInteraction.Ignore);
-
-            for(int i =0; i < hits.Length; i++)
-            {
-                Debug.Log(hits[i].transform.name);
-            }*/
 
             Debug.DrawRay(transform.position, direction *2, color: Color.red, duration: 1f);
-            //int playerMask = 1 << 9;
-            //int wallMask = 1 << 12;
+
             if (Physics.Raycast(ray, out hit, 2, rayMask))
             {
-                Debug.Log(hit.collider.name);;
+                //Debug.Log(hit.collider.name);;
                 if (hit.collider.tag == "Player")
                 {
                     agent.SetDestination(target.position);

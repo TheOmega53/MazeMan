@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class DoorScript : Interactable {
 
-    public bool isOpen = false;
-    public float rotationSpeed;
-
-    public MazeCell cell, otherCell;
+    //public bool isOpen = false;
+    private Animator animator;
 
 
     public override void Interact()
@@ -18,23 +16,32 @@ public class DoorScript : Interactable {
 
     }
 
-    void ToggleDoor()
+    private void Start()
     {
-        if (!isOpen)
+        animator = GetComponentInParent<Animator>();
+    }
+
+    public void ToggleDoor()
+    {
+        if (!animator.GetBool("isOpen"))
         {
             if(Inventory.instance.activeItem != null)
             {
                 if (Inventory.instance.activeItem.name == "Golden Key")
                 {
-                    transform.rotation *= Quaternion.Euler(0, 80f * rotationSpeed, 0);
-                    isOpen = true;
+                    //isOpen = true;
+                    animator.SetBool("isOpen", true);
+                } else
+                {
+                    Debug.Log("You need a key to open this door");
                 }
             }
         }
         else
         {
-            transform.rotation *= Quaternion.Euler(0, -80f * rotationSpeed, 0);
-            isOpen = false;
+            //isOpen = false;
+            animator.SetBool("isOpen", false);
+
         }
     }
 }
