@@ -7,10 +7,13 @@ using UnityEngine.SceneManagement;
 public class EnemyController : MonoBehaviour {
 
     public float lookRadius = 5f;
+    public float followDistance = 2.5f;
 
+    Vector3 startingPos;
     Transform target;
     NavMeshAgent agent;
     Animator animator;
+    bool following;
 
     public LayerMask rayMask;
 
@@ -19,6 +22,7 @@ public class EnemyController : MonoBehaviour {
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         target = PlayerManager.instance.player.transform;
+        startingPos = this.transform.position;
 	}
 	
 	// Update is called once per frame
@@ -43,6 +47,7 @@ public class EnemyController : MonoBehaviour {
                 if (hit.collider.tag == "Player")
                 {
                     agent.SetDestination(target.position);
+                    following = true;
                     animator.SetBool("isRunning", true);
                     animator.SetBool("isAttacking", false);
 
@@ -64,7 +69,13 @@ public class EnemyController : MonoBehaviour {
                 }
             }
         }
-	}
+
+        if (distance > followDistance && following)
+        {
+            agent.SetDestination(startingPos);
+            following = false;
+        }
+    }
 
     void FaceTarget()
     {

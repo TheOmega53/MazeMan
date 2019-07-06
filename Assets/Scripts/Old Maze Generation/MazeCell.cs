@@ -69,7 +69,16 @@ public class MazeCell : MonoBehaviour {
             for (int i = 0; i < layouts.Length ; i++){
                 layouts[i].Activate();
             }
-            //TODO: Triggers here
+    }
+
+    public void ToggleDoors()
+    {
+
+        DoorScript[] Doors = GetComponentsInChildren<DoorScript>();
+        foreach (DoorScript d in Doors)
+        {
+            d.Close();
+        }
     }
 }
 

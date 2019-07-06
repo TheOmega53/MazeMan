@@ -12,7 +12,7 @@ public class DoorScript : Interactable {
     {
         base.Interact();
 
-        ToggleDoor();
+        UseDoor();
 
     }
 
@@ -21,7 +21,7 @@ public class DoorScript : Interactable {
         animator = GetComponentInParent<Animator>();
     }
 
-    public void ToggleDoor()
+    public void UseDoor()
     {
         if (!animator.GetBool("isOpen"))
         {
@@ -42,6 +42,22 @@ public class DoorScript : Interactable {
             //isOpen = false;
             animator.SetBool("isOpen", false);
 
+        }
+    }
+
+    public void Open()
+    {
+        if (!animator.GetBool("isOpen"))
+        {
+            animator.SetBool("isOpen", true);
+        }
+    }
+
+    public void Close()
+    {
+        if (animator.GetBool("isOpen"))
+        {
+            animator.SetBool("isOpen", false);
         }
     }
 }

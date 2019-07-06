@@ -1,0 +1,13 @@
+{
+    "name": "Scripts",
+    "references": [
+        "Unity.TextMeshPro.Editor",
+        "Unity.TextMeshPro"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}

@@ -4,6 +4,9 @@
 	This component is for all objects that the player can
 	interact with such as enemies, items etc. It is meant
 	to be used as a base class.
+
+
+    THIS COMPONENT NEEDS A COLLIDER ON THE SAME OBJECT FOR IT TO WORK PROPERLY WITH RAYCAST SYSTEM
 */
 
 public class Interactable : MonoBehaviour {
@@ -28,7 +31,7 @@ public class Interactable : MonoBehaviour {
 		// and we haven't already interacted with the object
 		if (isFocus && !hasInteracted)
 		{
-			/*
+            /*
 			// If we are close enough
 			float distance = Vector3.Distance(player.position, interactionTransform.position);
 			if (distance <= radius)

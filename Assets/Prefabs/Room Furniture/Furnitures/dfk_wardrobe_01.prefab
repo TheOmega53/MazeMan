@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 33815767865269322}
   - component: {fileID: 23944995109723490}
   - component: {fileID: 64592073696785998}
+  - component: {fileID: 95770855383663800}
   m_Layer: 0
   m_Name: W_drawer1
   m_TagString: Untagged
@@ -124,6 +125,7 @@ GameObject:
   - component: {fileID: 33923819606675154}
   - component: {fileID: 23590789087357968}
   - component: {fileID: 64142478414144850}
+  - component: {fileID: 95177396643446948}
   m_Layer: 0
   m_Name: dfk_wardrobe_01
   m_TagString: Untagged
@@ -504,3 +506,39 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.49631053, y: 1.4747835, z: 0.028785199}
   m_Center: {x: 0.24427637, y: 0.14915693, z: -0.0011045784}
+--- !u!95 &95177396643446948
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1962677989927716}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!95 &95770855383663800
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1429003261608402}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
